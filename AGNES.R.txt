@@ -1,0 +1,28 @@
+# Install factoextra package
+install.packages("factoextra")
+
+# Load required libraries
+library(cluster)
+library(factoextra)
+library(readr)
+
+# Read the dataset
+data_csv <- read.csv("C:/Users/Lenovo/OneDrive/Desktop/data.csv.csv")
+
+# Check the structure of the data
+str(data_csv)
+
+# Perform agnes clustering
+agnes_result <- agnes(data_csv, method = "ward")
+
+# Plot the dendrogram
+plot(agnes_result, which.plots = 2, cex = 0.6)
+
+# Cut the dendrogram to get clusters
+cut_clusters <- cutree(agnes_result, k = 2)  # Change k as needed
+
+# Visualize the clusters
+fviz_cluster(list(data = data_csv, cluster = cut_clusters))
+
+# Display the cluster membership
+print(cut_clusters)

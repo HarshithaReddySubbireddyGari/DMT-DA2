@@ -1,0 +1,21 @@
+# Load required libraries
+library(cluster)
+library(factoextra)
+library(readr)
+
+# Read the dataset
+data <- read.csv("C:/Users/Lenovo/OneDrive/Desktop/data.csv.csv")
+
+# Check the structure of the data
+str(data)
+
+# Preprocess the data if needed (e.g., remove missing values, scale the data)
+
+# Perform CLARA clustering
+clara_result <- clara(data, k = 2, samples = 100)  # Change the number of clusters (k) and samples as needed
+
+# Visualize the clusters
+fviz_cluster(clara_result, data = data)
+
+# Display the cluster medoids (representative objects)
+print(clara_result$medoids)

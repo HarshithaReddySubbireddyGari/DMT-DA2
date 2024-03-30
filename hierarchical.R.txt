@@ -1,0 +1,27 @@
+# Load required libraries
+library(cluster)
+library(factoextra)
+library(readr)
+
+# Read the dataset
+data <- read.csv("C:/Users/Lenovo/OneDrive/Desktop/data.csv.csv")
+
+# Check the structure of the data
+str(data)
+
+# Preprocess the data if needed (e.g., remove missing values, scale the data)
+
+# Perform hierarchical clustering
+hclust_result <- hclust(dist(data), method = "ward.D")
+
+# Visualize the clusters using a dendrogram
+plot(hclust_result, hang = -1, cex = 0.6, main = "Hierarchical Clustering Dendrogram")
+
+# Cut the dendrogram to get clusters
+cut_tree <- cutree(hclust_result, k = 2)
+
+# Display the number of observations in each cluster
+table(cut_tree)
+
+# Alternatively, you can also use fviz_dend() from factoextra for a nicer visualization
+# fviz_dend(hclust_result, k = 2, cex = 0.6, main = "Hierarchical Clustering Dendrogram")
